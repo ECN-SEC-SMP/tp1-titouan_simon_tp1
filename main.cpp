@@ -1,18 +1,33 @@
 #include "utilitaire.hpp"
+#include "lexique.h"
 #include <iostream>
+#include <string>
 
-int main(int argc, char** argv) {
-	if (argc < 2) {
-		std::cout << "Usage: " << argv[0] << " <file>\n";
-		return 1;
-	}
+using namespace std;
+int main() {
+    Lexique test;        
+    string cheminTexte_NDDP="./tp1-Lexique-fichiers/notreDameDeParis_A.txt";
+    string cheminTexte_LM="./tp1-Lexique-fichiers/lesMiserables_A.txt";
+    
+    test.ajouterTexte(cheminTexte_NDDP);
+    cout<<test;
+    test.sauvegarder("./lexique.txt");
+    
+    return 0;
 
-	std::string content;
-	if (!util::readFileIntoString(argv[1], content)) {
-		std::cerr << "Erreur: impossible d'ouvrir le fichier '" << argv[1] << "'\n";
-		return 2;
-	}
+    // test.ajouterMot("test1");
+    // test.ajouterMot("test2");
+    // test.incrementerOccurrence("test1");
+    // //test.supprimerMot("test2");
+    // test.afficherLexique(); 
+    // // test.motExisteOccurence("test1");
+    // // test.nombreMots();
+    // Lexique test_2;
+    // test_2.ajouterMot("test1");
+    // // test += test_2;
+    // // test.afficherLexique();
+    // test -= test_2;
+    // //test.afficherLexique();
+    // cout<<test;
 
-	std::cout << "Taille du fichier: " << content.size() << " octets\n";
-	return 0;
 }
