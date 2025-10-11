@@ -1,0 +1,7 @@
+# .gitignore pour un projet C++
+
+# Fichiers objets
+*.o
+*.obj
+*.lo
+

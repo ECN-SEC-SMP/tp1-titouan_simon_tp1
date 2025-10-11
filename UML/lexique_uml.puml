@@ -1,0 +1,53 @@
+@startuml Lexique_UML
+
+!theme plain
+skinparam classAttributeIconSize 0
+skinparam classFontSize 12
+skinparam classAttributeFontSize 10
+skinparam classOperationFontSize 10
+
+class Lexique {
+    - lexique : std::map<std::string, int>
+    
+    + Lexique()
+    + ~Lexique()
+    
+    + afficherLexique() : void
+    + motExiste(mot : const std::string&) : bool
+    + motExisteOccurence(mot : const std::string&) : void
+    + nombreMots() : void
+    + nombreOccurrences(mot : const std::string&) : void
+    
+    + ajouterMot(mot : const std::string&) : void
+    + incrementerOccurrence(mot : const std::string&) : void
+    + supprimerMot(mot : const std::string&) : void
+    + ajouterTexte(chemin_Texte : const std::string&) : void
+    
+    + operator+=(autre : const Lexique&) : Lexique&
+    + operator-=(autre : const Lexique&) : Lexique&
+    
+    + sauvegarder(cheminFichier : const std::string&) : void
+}
+
+note right of Lexique::lexique
+    Attribut privé : dictionnaire 
+    qui stocke les mots (clés) 
+    et leurs occurrences (valeurs)
+end note
+
+note bottom of Lexique
+    Méthodes principales :
+    - Gestion des mots (ajout, suppression, recherche)
+    - Calcul des occurrences
+    - Fusion et différence de lexiques
+    - Sauvegarde et affichage
+end note
+
+' Fonction externe (friend)
+class "<<external>>" as ExternalOp {
+    + operator<<(os : std::ostream&, lex : const Lexique&) : std::ostream&
+}
+
+Lexique ..> ExternalOp : friend
+
+@enduml
